@@ -38,7 +38,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
             http
             .authorizeRequests()                                                                
                 .antMatchers("/","/login","/vkapi**").permitAll()                  
-                .antMatchers("/admin/**").hasRole("ADMIN")                                      
+                .antMatchers("/admin/**").hasAuthority("admin")                                   
                 .anyRequest().authenticated() 
             .and()
                 .formLogin()

@@ -57,10 +57,10 @@ public class UserController {
     }
    
    @RequestMapping(value="/user/add",method =   RequestMethod.POST)
-   public void addUser(@RequestParam("login") String login, 
+   public void addUser(@RequestParam("username") String username, 
                                @RequestParam("password") String pass,HttpServletResponse response,ModelMap map) throws IOException{   
        Users u = new Users();
-       u.setUsername(login);
+       u.setUsername(username);
        u.setPassword(pass);
        userServiceImp.add(u);      
        response.sendRedirect("/../admin/apanel");

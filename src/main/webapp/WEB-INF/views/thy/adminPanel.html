@@ -24,14 +24,14 @@ and open the template in the editor.
               </tr>
               <tr th:each="user : ${users}">
                 <td th:text="${user.id}">Onions</td>
-                <td th:text="${user.login}">2.41</td>
+                <td th:text="${user.username}">2.41</td>
                 <td th:text="${user.password}">yes</td>
                 <td><a th:href="@{'/user/del/'+${user.id}}">remove</a></td>
               </tr>
             </table> 
         <p th:text="${id}" th:if="${!#strings.isEmpty(id)}">text</p>
         <form th:action="@{/user/add}" method="POST">
-            <input type="text" th:name="login" th:value="${login}"/>
+            <input type="text" th:name="username" th:value="${username}"/>
             <input type="text" th:name="password" th:value="${password}"/>
             <input type="submit"/>
         </form>

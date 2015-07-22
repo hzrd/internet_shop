@@ -41,7 +41,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         for(Users u:userServiceImp.list()){
             if (u.getUsername().equals(name)&&u.getPassword().equals(password)){
                 final List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
-                grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
+                grantedAuths.add(new SimpleGrantedAuthority(u.getRole()));
                 final UserDetails principal = new User(name, password, grantedAuths);
                 final Authentication auth = new UsernamePasswordAuthenticationToken(principal, password, grantedAuths);
                 return auth;                
