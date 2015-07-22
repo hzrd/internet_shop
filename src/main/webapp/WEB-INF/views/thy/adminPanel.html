@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+       
+        
+        <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css"/>
+        <script src="../resources/js/jquery-2.1.4.min.js"></script>
+         <script src="../resources/js/script.js"></script>
+
+    </head>
+    <body>
+        <h1>Users list</h1>  
+            <table>
+              <tr>
+                <th>id</th>
+                <th>login</th>
+                <th>password</th>
+              </tr>
+              <tr th:each="user : ${users}">
+                <td th:text="${user.id}">Onions</td>
+                <td th:text="${user.login}">2.41</td>
+                <td th:text="${user.password}">yes</td>
+                <td><a th:href="@{'/user/del/'+${user.id}}">remove</a></td>
+              </tr>
+            </table> 
+        <p th:text="${id}" th:if="${!#strings.isEmpty(id)}">text</p>
+        <form th:action="@{/user/add}" method="POST">
+            <input type="text" th:name="login" th:value="${login}"/>
+            <input type="text" th:name="password" th:value="${password}"/>
+            <input type="submit"/>
+        </form>
+        <div class="row">
+            <div class="cocol-md-3">
+                 <a class="btn btn-default get-userlist" >List</a>
+                 <div class="content-place">
+                     
+                 </div>                
+            </div>
+        </div>    
+
+    </body>
+</html>
