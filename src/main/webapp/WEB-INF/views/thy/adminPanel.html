@@ -33,6 +33,7 @@ and open the template in the editor.
         <form th:action="@{/user/add}" method="POST">
             <input type="text" th:name="username" th:value="${username}"/>
             <input type="text" th:name="password" th:value="${password}"/>
+            <input type="checkbox" th:name ="admin" th:value="true"/>
             <input type="submit"/>
         </form>
         <div class="row">

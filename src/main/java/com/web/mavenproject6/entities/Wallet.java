@@ -8,9 +8,12 @@ package com.web.mavenproject6.entities;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.springframework.security.core.userdetails.User;
 
@@ -25,9 +28,9 @@ public class Wallet implements Serializable
     private long id;
     private String type;
     private String number;
-    private User user;
+    private Users user;
     
-    public Wallet(long id, String type, String number,User user)
+    public Wallet(long id, String type, String number,Users user)
     {
         this.id = id;
         this.type = type;
@@ -63,12 +66,15 @@ public class Wallet implements Serializable
         this.number = number;
     }
     
-    @Column(name = "user", nullable = false, columnDefinition = "")
-    public User getUser() {
+    //@Column(name = "user", nullable = false, columnDefinition = "")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 }

@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -58,10 +57,17 @@ public class UserController {
    
    @RequestMapping(value="/user/add",method =   RequestMethod.POST)
    public void addUser(@RequestParam("username") String username, 
-                               @RequestParam("password") String pass,HttpServletResponse response,ModelMap map) throws IOException{   
+                               @RequestParam("password") String pass,
+                               @RequestParam(required=false ,value = "admin",defaultValue = "false") boolean admin,
+                               HttpServletResponse response,ModelMap map) throws IOException{ 
        Users u = new Users();
        u.setUsername(username);
        u.setPassword(pass);
+       if (admin)
+           u.setRole("admin");
+       else
+           u.setRole("user");
+       u.setEnabled(true);
        userServiceImp.add(u);      
        response.sendRedirect("/../admin/apanel");
       // return "redirect:admin/apanel";

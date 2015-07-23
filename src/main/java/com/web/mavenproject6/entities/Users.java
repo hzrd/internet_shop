@@ -6,20 +6,17 @@
 package com.web.mavenproject6.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
-import javax.validation.groups.Default;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.validation.annotation.Validated;
+
 /**
  *
  * @author Aleks
@@ -35,7 +32,7 @@ public class Users implements Serializable
     private String password;  
     private String role;  
     private boolean enabled;
-    
+    private Set<Wallet> wallets = new HashSet<Wallet>(0); 
 
     public Users(long id, String username, String password, boolean enabled) {
         this.id = id;
@@ -50,6 +47,7 @@ public class Users implements Serializable
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     public long getId() {
         return id;
     }
@@ -92,6 +90,17 @@ public class Users implements Serializable
 
     public void setRole(String role) {
         this.role = role;
+    }
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    public Set<Wallet> getWallets() 
+    {
+        return wallets;
+    }
+
+    public void setWallets(Wallet wallet) 
+    {
+        this.wallets.add(wallet);
     }
        
     @Override

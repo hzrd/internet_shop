@@ -6,6 +6,8 @@
 package com.web.mavenproject6.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,14 +25,13 @@ public class Bucket implements Serializable
 {
     private long id;
     private long sessionNumber;
-    private Product product;
+    //private Set<Product> product = new HashSet<Product>(0); 
     private int productCount;
     
-    public Bucket(long id, long sessionNumber, Product product, int productCount)
+    public Bucket(long id, long sessionNumber, int productCount)
     {
         this.id = id;
         this.sessionNumber = sessionNumber;
-        this.product = product;
         this.productCount = productCount;
     }
 
@@ -56,17 +57,16 @@ public class Bucket implements Serializable
     {
         this.sessionNumber = sessionNumber;
     }
-
-    @Column(name = "product", nullable = false, columnDefinition = "")
-    public Product getProduct() 
-    {
+/*
+    public Set<Product> getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) 
-    {
+    public void setProduct(Set<Product> product) {
         this.product = product;
     }
+    */
+
     
     @Column(name = "count", nullable = false)
     public int getProductCount() 
