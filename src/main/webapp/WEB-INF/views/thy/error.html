@@ -17,12 +17,10 @@
 				</ul>
 			</div>
 		</div>
-		<h1 th:text="${title}">Title</h1>
+	
 		
-		<div>
-			There was an unexpected error (type=<span th:text="${error}">Bad</span>, status=<span th:text="${status}">500</span>).
-		</div>
-		<div th:text="${message}">Fake content</div>
+		<p th:text="${error_name}">Incorrect date</p>
+                <p th:text="${error_pass}">Incorrect date</p>
 		<div>
 			Please contact the operator with the above information.
 		</div>

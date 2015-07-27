@@ -15,5 +15,12 @@ import org.springframework.data.repository.CrudRepository;
  */
 
 public interface UserRepository extends CrudRepository<Users, Long> {
+
+   // List<User> findByLastName(String lastName);
+    //@Query("select a from User")
+    //List<User> allUsers();
+    
+   // @Query("select a from User a where a.name = :name")
+    Users findByName(@Value("name") String name);
     
 }

@@ -5,6 +5,7 @@
  */
 package com.web.mavenproject6.config;
 
+import com.web.mavenproject6.workers.TestWorker;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -16,7 +17,7 @@ public class MvcWebApplicationInitializer extends
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { MvcConfiguration.class };
+        return new Class[] { MvcConfiguration.class};
     }
 
      @Override

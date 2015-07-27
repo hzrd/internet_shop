@@ -5,18 +5,27 @@
  */
 package com.web.mavenproject6.entities;
 
+import com.mysql.jdbc.TimeUtil;
+import com.web.mavenproject6.validators.annotation.MyEmpty;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Date;
+import java.util.Calendar;
+import javax.annotation.Resources;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.groups.Default;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
+import org.springframework.validation.annotation.Validated;
 /**
  *
  * @author Aleks
@@ -26,28 +35,52 @@ import javax.persistence.Table;
 @Table(name="users")
 public class Users implements Serializable
 {
-    
-    private long id;
-    private String username;  
-    private String password;  
-    private String role;  
-    private boolean enabled;
-    private Set<Wallet> wallets = new HashSet<Wallet>(0); 
 
-    public Users(long id, String username, String password, boolean enabled) {
+     
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+   
+    @NotEmpty
+    @Length(max = 45)    
+    private String username;
+    
+    @MyEmpty
+    @Length(max = 45)
+    private String password;
+    
+    @NotNull 
+    private boolean enabled;
+    
+    private String email;
+    private String name;
+    private String address;
+    private Date regDate;
+    private Date lastOnlineDate;
+    private Date deleteDate;
+
+    public Users(long id, String username, String password, boolean enabled, String email, String name, String address, Date regDate, Date lastOnlineDate, Date deleteDate) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.enabled = enabled;
-    
+        this.email = email;
+        this.name = name;
+        this.address = address;
+        this.regDate = regDate;
+        this.lastOnlineDate = lastOnlineDate;
+        this.deleteDate = deleteDate;
     }
 
     public Users() {
+        this.username = "";
+        this.password = "";
+        this.enabled = true;
+        this.email = "";
+        this.name = "";
+        this.address = "";
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     public long getId() {
         return id;
     }
@@ -56,7 +89,6 @@ public class Users implements Serializable
         this.id = id;
     }
 
-    @Column(name = "username", nullable = false, length = 45)
     public String getUsername() {
         return username;
     }
@@ -65,7 +97,6 @@ public class Users implements Serializable
         this.username = username;
     }
 
-    @Column(name = "password", nullable = false, length = 45)
     public String getPassword() {
         return password;
     }
@@ -74,7 +105,6 @@ public class Users implements Serializable
         this.password = password;
     }
 
-    @Column(name = "enabled")
     public boolean isEnabled() {
         return enabled;
     }
@@ -83,29 +113,57 @@ public class Users implements Serializable
         this.enabled = enabled;
     }
 
-    @Column(name = "role", nullable = false, length = 20)
-    public String getRole() {
-        return role;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    public Set<Wallet> getWallets() 
-    {
-        return wallets;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setWallets(Wallet wallet) 
-    {
-        this.wallets.add(wallet);
+    public String getName() {
+        return name;
     }
-       
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Date getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
+    }
+
+    public Date getLastOnlineDate() {
+        return lastOnlineDate;
+    }
+
+    public void setLastOnlineDate(Date lastOnlineDate) {
+        this.lastOnlineDate = lastOnlineDate;
+    }
+
+    public Date getDeleteDate() {
+        return deleteDate;
+    }
+
+    public void setDeleteDate(Date deleteDate) {
+        this.deleteDate = deleteDate;
+    }
+
     @Override
     public String toString() {
-        return "Users{" + "id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled +'}';
+        return "Users{" + "id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled + ", email=" + email + ", name=" + name + ", address=" + address + ", regDate=" + regDate + ", lastOnlineDate=" + lastOnlineDate + ", deleteDate=" + deleteDate + '}';
     }
 
    

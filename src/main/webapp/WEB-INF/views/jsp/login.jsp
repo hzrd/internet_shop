@@ -55,11 +55,11 @@
  
 		<table>
 			<tr>
-				<td>User:</td>
+				<td>User 2:</td>
 				<td><input type='text' name='username'></td>
 			</tr>
 			<tr>
-				<td>Password:</td>
+				<td>Password 2:</td>
 				<td><input type='password' name='password' /></td>
 			</tr>
 			<tr>

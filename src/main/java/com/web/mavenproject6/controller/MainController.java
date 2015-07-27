@@ -41,15 +41,16 @@ public class MainController {
     UserServiceImp userServiceImp; 
     
     @RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
-    public ModelAndView defaultPage() {
+    public ModelAndView defaultPage() throws ArithmeticException {
 
             ModelAndView model = new ModelAndView();
             model.addObject("title", "Spring Security Login Form - Database Authentication");
             model.addObject("message", "This is default page!");
-            model.setViewName("jsp/hello");
-            return model;
+            model.setViewName("thy/home");
+           return model;
 
     }
+        
    
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public ModelAndView adminPage() {
@@ -62,6 +63,12 @@ public class MainController {
 
     }
 
+    
+     @RequestMapping(value = "/404", method = RequestMethod.GET)
+    public ModelAndView adminPag2() {
+            return new ModelAndView("thy/404");            
+    }
+    
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "logout", required = false) String logout) {
@@ -96,7 +103,7 @@ public class MainController {
                   model.addObject("username", userDetail.getUsername());
             }
 
-            model.setViewName("jsp/403");
+            model.setViewName("thy/403");
             return model;
 
     }

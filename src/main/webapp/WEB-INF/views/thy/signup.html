@@ -3,7 +3,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title tiles:fragment="title" th:text="#{page.login.title}">Default Title</title>
         <link rel="stylesheet" th:href="@{/resources/css/w3.css }" href="resources/css/w3.css" type="text/css"/>
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"/>
         <script src="resources/js/jquery-2.1.4.min.js"></script>
         <script src="resources/js/script.js"></script>
     </head>
@@ -25,18 +24,6 @@
             color:white;
             text-decoration: none;
             font-size:10pt;
-        }
-
-        .icons-class {
-            text-decoration:none;
-            transition:.5s;
-            margin-left:7px;
-            float:right;
-        }
-
-        .icons-class:hover {
-            color:#86C9FE;
-            transition:.5s;
         }
     </style>
     <body>
@@ -68,15 +55,8 @@
                 </div>
                 <button type="submit" class="w3-btn blue" th:text="#{page.login.loginBtn}"></button> 
                 <a th:href="@{/signup}" class="w3-btn white" th:text="#{page.login.regBtn}"></a>
-                <a th:href="@{/forgot}" class="w3-btn white" th:text="#{page.login.forgot}" style="float:right;"></a>
             </form>
 
-            <div class="w3-container form-center w3-card-4 w3-margin-top w3-padding blue">
-                <a href="" class="fa fa-google-plus-square w3-xxlarge icons-class" ></a>
-                <a href="" class="fa fa-twitter-square w3-xxlarge icons-class" ></a>
-                <a href="" class="fa fa-facebook-square w3-xxlarge icons-class" ></a>
-                <a href="" class="fa fa-git-square w3-xxlarge icons-class" ></a>
-            </div>
 
         </div>
     </body>

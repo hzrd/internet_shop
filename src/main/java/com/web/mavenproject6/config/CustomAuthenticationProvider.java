@@ -38,10 +38,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         final String name = authentication.getName();
         final String password = authentication.getCredentials().toString();
 
+        System.err.println("!!!!Password "+password);
         for(Users u:userServiceImp.list()){
             if (u.getUsername().equals(name)&&u.getPassword().equals(password)){
                 final List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
-                grantedAuths.add(new SimpleGrantedAuthority(u.getRole()));
+                grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
                 final UserDetails principal = new User(name, password, grantedAuths);
                 final Authentication auth = new UsernamePasswordAuthenticationToken(principal, password, grantedAuths);
                 return auth;                

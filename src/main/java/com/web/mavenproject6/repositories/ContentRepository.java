@@ -5,14 +5,13 @@
  */
 package com.web.mavenproject6.repositories;
 
-import com.web.mavenproject6.entities.Bucket;
+import com.web.mavenproject6.entities.Content;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
- * @author Никита
+ * @author Aleks
  */
-public interface BucketRepository extends CrudRepository<Bucket, Long>
-{
+public interface ContentRepository extends CrudRepository<Content, Long> {
     
 }

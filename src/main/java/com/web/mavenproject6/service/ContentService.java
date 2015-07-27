@@ -5,17 +5,10 @@
  */
 package com.web.mavenproject6.service;
 
-import com.web.mavenproject6.entities.Wallet;
-
-
 /**
  *
- * @author Никита
+ * @author Aleks
  */
-public interface WalletService 
-{
-    void add(Wallet wallet);
-    long count();
-    Wallet findOne(Long id);
-    void delete(Long id);
+public interface ContentService {
+    
 }
